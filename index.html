@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>My Campus Planner</title>
+        <link rel="stylesheet" href="styles/styles.css">
+
+    </head>
+    <body>
+        <header>
+            <h1> My Campus Planner 📅 </h1>
+            <nav id="nav-list"> 
+                <ul>
+                    <li> <a href="#add-new-section">Task Form</a> </li>
+                    <li> <a href="#welcome-section"> Home </a>
+                    <li> <a href="#search-section">Search</a></li>
+                    <li> <a href="#dashboard-section">Dashboard</a></li>
+                    <li> <a href="#about-section">About Me</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <article>
+            <section id="welcome-section">
+                <h2> Welcome to My Campus Planner! </h2>
+                <p> Your ultimate tool for managing your campus life. Stay organized, plan your schedule, and never miss an important event again! </p>
+            </section>
+            </article>
+
+            <section id="dashboard-section">
+                <h3> Dashboard </h2>
+                <div id="status-grid">
+                    <div id="status-card">
+                        <h4> Total tasks </h4>
+                        <p class="status-value" id="status-total"> 0 </p>
+
+
+                    </div>
+                    <div id="status-card">
+                        <h4> Total Duration </h4>
+                        <p class="status-value" id="status-duration"> 0 </p>
+                    </div>
+                    <div id="status-card">
+                        <h4> Top Tags </h4>
+                        <p class="status-value" id="status-tag"> 0 </p>
+                    </div>
+                    <div id="status-card">
+                        <h4> This week </h4>
+                        <p class="status-value" id="status-week"> 0 </p>
+
+                    </div>
+                </div>
+                <div >
+
+                </div>
+
+
+
+            </section>
+            <section id="add-new-section">
+                <form id="add-new-task-form">
+                    <h3> ADD A NEW TASK </h3>
+                    
+                        <label for="task-title"> Task title </label>
+                        <input type="text" id="task-title" name="title" required>
+
+                        <label for="task-date"> Due Date </label>
+                        <input type="date" id="task-date" name="task-date" required>
+
+                        <label for="time"> Duration (minutes)</label> 
+                        <input type="time" id="duration" name="duration" required>
+
+                        <label for="description" > Description </label>
+                        <input type="text" id="description" name="description" required>
+                    
+                        <label for="tags"> Tags </label>
+                        <input type="text" id="tags" name="tags" required>
+
+                        <button type="submit"> Add Task </button> 
+                    </form>
+
+
+            </section>
+
+            <section class="update-section">
+
+            </section>
+
+            <section id="search-section">
+                <box id="search-box">
+                    <h3> SEARCH TASKS </h3>
+                    <input type="text" id="search-input" placeholder="Search by title, tags, or description">
+                    <button id="search-button"> Search </button>
+                </box>
+
+       
+            </section>
+            <footer>
+                
+            </footer>
+        </main>
+    </body> 
+</html>

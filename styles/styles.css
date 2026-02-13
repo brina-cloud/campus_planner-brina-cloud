@@ -1,0 +1,205 @@
+body{
+    background-color: #FAF5E4;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+
+}
+
+
+
+header{
+    position: fixed;
+    display: flex; 
+    margin-left: 10%; margin-right: 0%;
+    color: #800000;
+    padding: 10px;
+    text-align: left;
+    background-color: #FAF5E4;
+    border-radius: 60px; width: 90%;
+    
+
+}
+
+header h1{
+font-size: 20px;
+
+}
+
+
+
+nav li{
+    
+    padding: 10px;
+    display: block;
+    font-family:monoscope;
+    
+
+
+}
+
+nav a{
+    text-decoration: none;
+    color:#800000;
+    position: relative;
+    font-style:normal;
+    text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 8px 0;
+  transition: color 0.3s ease;
+    
+
+    
+    
+}
+nav a:hover{
+    
+
+}
+nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0%;
+  height: 2px;
+  background: #800000;
+  transition: width 0.3s ease;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+nav ul{
+    display:flex;
+    justify-items: auto;
+    margin-left: 120%;
+    text-decoration: none;
+
+
+}
+
+main h3{
+    color: #800000;
+}
+
+main {
+   padding: 70px;
+   margin: 0 auto;
+   max-width: 600px;
+}
+
+h2{
+    color: #800000;
+    text-align: center;
+    font-size: 50px;
+    margin-bottom: 20px;
+    margin-right: 3%;
+    transition: 0.3s ease-in-out; } h2:hover{ color:#800000;
+}
+
+
+.add-new-section{
+    display: flex; flex-direction: column;
+    align-items: center;
+    margin-left: 10%; margin-right: 10%;
+    
+
+
+   }
+
+label{
+    display: block;
+    margin-bottom: 2px;
+    font-weight: bold;
+    color: #555;
+    
+}
+
+
+input{
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+}
+
+
+input:focus{
+    outline: none;
+    border-color: #4f46e5;
+}
+
+.add-new-section{
+    background: #F5F5DC;
+    margin-bottom: 20px;
+    padding: 20px;
+}
+
+.search-section{
+    margin-left: 10%; margin-right: 10%;
+    background-color: #F5F5DC; font-size: 1.2rem;
+    color: #333333;
+    padding: 15px;
+    text-align: center;
+    border-radius: 12px;
+    margin-top: 89px;
+}
+
+article{
+    margin-left: 10%; margin-right: 10%;
+    font-size: 1.2rem;
+    color: #333333;
+    padding: 100px;
+    text-align: center;
+    border-radius: 12px;
+    margin-top: 20px;
+    opacity: 0;
+    transform: translateY(40px);
+    animation: slideUp 1s ease forwards;
+    margin-bottom: 310px;
+}
+
+@keyframes slideUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+button{
+    display: flex;
+    background: teal;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    width: 50%; height: 10%;
+
+
+}
+
+
+button:hover{
+    cursor: pointer;
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+
+
+.search-section input{
+    width: 400px
+   
+}
+
+.search-section button{
+    width: 100px;
+    margin-left: 20px;
+
+}
