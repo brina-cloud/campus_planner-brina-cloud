@@ -12,56 +12,70 @@
             <h1> My Campus Planner 📅 </h1>
             <nav id="nav-list"> 
                 <ul>
-                    <li> <a href="#add-new-section">Task Form</a> </li>
+                    <li> <a href="#dashboard-section">Dashboard</a> </li>
                     <li> <a href="#welcome-section"> Home </a>
                     <li> <a href="#search-section">Search</a></li>
-                    <li> <a href="#dashboard-section">Dashboard</a></li>
-                    <li> <a href="#about-section">About Me</a></li>
+                    <li> <a href="#add-new-section">Form</a></li>
+                    <li> <a href="#about-section">About</a></li>
                 </ul>
             </nav>
         </header>
         <main>
             <article>
-            <section id="welcome-section">
+            <section class="section" id="welcome-section">
                 <h2> Welcome to My Campus Planner! </h2>
                 <p> Your ultimate tool for managing your campus life. Stay organized, plan your schedule, and never miss an important event again! </p>
             </section>
             </article>
 
-            <section id="dashboard-section">
-                <h3> Dashboard </h2>
+            <section class="section" id="dashboard-section" rolr="status" aria-live="polite">
+                <h3> DASHBOARD </h3>
                 <div id="status-grid">
-                    <div id="status-card">
-                        <h4> Total tasks </h4>
+                    <div class="status-card">
+                        <h4> Total Tasks </h4>
                         <p class="status-value" id="status-total"> 0 </p>
 
 
                     </div>
-                    <div id="status-card">
-                        <h4> Total Duration </h4>
-                        <p class="status-value" id="status-duration"> 0 </p>
+                    <div class="status-card">
+                        <h4> Completed </h4>
+                        <p class="status-value" id="status-completed"> 0 </p>
                     </div>
-                    <div id="status-card">
-                        <h4> Top Tags </h4>
-                        <p class="status-value" id="status-tag"> 0 </p>
+                    <div class="status-card">
+                        <h4> Pending </h4>
+                        <p class="status-value" id="status-pending"> 0 </p>
                     </div>
-                    <div id="status-card">
-                        <h4> This week </h4>
-                        <p class="status-value" id="status-week"> 0 </p>
+                    <div class="status-card">
+                        <h4> Top Tag </h4>
+                        <p class="status-value" id="status-tag"> -- </p>
 
                     </div>
                 </div>
-                <div >
+                <div class="duration-target">
+                    <h3> WEEKLY DURATION TARGET </h3>
+                    <div class="target-info">
+                        <p> Target: <span id="target-display">0</span> minutes</p>
+                        <p> This week: <span id="week-duration">0</span> minutes</p>
+                        <p class="target-status" id="target-status"></p>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-fill" role="progresbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+
+                    </div>
 
                 </div>
+                <div class="trend-chart">
+                    <h3> Last 7 days activity </h3>
+                    <div class="chart-container" id="trend-chart" aria-label=""Bar chart showing task count for 7 days"></div>
+                </div>
+
 
 
 
             </section>
-            <section id="add-new-section">
-                <form id="add-new-task-form">
+            <section class="section" id="add-new-section" aria-live="assertive">
                     <h3> ADD A NEW TASK </h3>
-                    
+                    <form id="form-list">
                         <label for="task-title"> Task title </label>
                         <input type="text" id="task-title" name="title" required>
 
@@ -69,7 +83,7 @@
                         <input type="date" id="task-date" name="task-date" required>
 
                         <label for="time"> Duration (minutes)</label> 
-                        <input type="time" id="duration" name="duration" required>
+                        <input type="text" id="duration" name="duration" required>
 
                         <label for="description" > Description </label>
                         <input type="text" id="description" name="description" required>
@@ -79,7 +93,7 @@
 
                         <button type="submit"> Add Task </button> 
                     </form>
-
+                    
 
             </section>
 
@@ -87,18 +101,72 @@
 
             </section>
 
-            <section id="search-section">
-                <box id="search-box">
+            <section class="section" id="search-section">
+                <div id="search-box"  >
                     <h3> SEARCH TASKS </h3>
                     <input type="text" id="search-input" placeholder="Search by title, tags, or description">
-                    <button id="search-button"> Search </button>
-                </box>
-
+                    <button id="search-btn"> Search </button>
+                </div>
+                <div id="sort-select">
+                    <h3> Sort data</h3>
+                    <label for="sort-select">Sort by:</label>
+                    <input type="select"></input>
+                    <select id="sort-select">
+                        <option value="date-desc">Date (New)</option>
+                        <option value="date-asc">Date (Old)</option>
+                        <option value="title-asc">Title (A-Z)</option>
+                        <option value="title-desc">Title (Z-A)</option>
+                        <option value="duration-desc">Duration (disc)</option>
+                        <option value="duration-asc">Duration (asc)</option>
+                        </select>
+                    </div>
        
             </section>
-            <footer>
-                
-            </footer>
+
+            
+            <section class="section" id="about-section">
+                <h3> About Campus Planner </h3>
+                <p> This task assistant app that helps students will time management and increase productivity.
+                <p> As a student, I understand how challenging it can be to manage classes, assignments, deadlines, and personal goals all at once. That’s why I built Campus Planner — to make planning easier, clearer, and less stressful.
+                <ul id="feature"> 
+
+                    <li> Organize class schedules</li>
+
+                        <li> Track assignments and deadlines</li>
+
+                        <li> Set academic goals</li>
+
+                        <li> Manage time effectively</li>
+                    </ul>
+                    </p>
+                </section>
+            
+              <section class="section" id="settings-section">
+        <h3>Settings</h3>
+        <form id="settings-form">
+          <label for="target-minutes">Weekly target (minutes)</label>
+          <input type="text" id="target-minutes" required />
+
+          <label for="cap-minutes">Weekly cap (minutes)</label>
+          <input type="text" id="cap-minutes" required />
+
+          <label for="minutes-time">Convert minutes to hours</label>
+          <input type="text" id="minutes-time" placeholder="Minutes" />
+          <p id="conversion-result" role="status" aria-live="polite"></p>
+
+          <button type="submit">Save Settings</button>
+          <button type="button" id="export-json" class="secondary">Export JSON</button>
+          <label for="import-json" class="button-like">Import JSON</label>
+          <input type="file" id="import-json" accept="application/json" />
+          <p id="settings-status" role="status" aria-live="polite"></p>
+        </form>
+      </section>
         </main>
+        <footer>
+            <p>Created by Kaliza Sabrina. My Campus Planner<p>
+            
+         </footer>
+
+         <script src="seed.json"></script>
     </body> 
 </html>

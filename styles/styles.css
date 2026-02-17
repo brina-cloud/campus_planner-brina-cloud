@@ -6,33 +6,40 @@ body{
 
 }
 
+main{
+    margin: 120px auto 0 auto;
+    padding: 0 20px;
+    max-width: 1000px;
+
+}
 
 
 header{
     position: fixed;
-    display: flex; 
-    margin-left: 10%; margin-right: 0%;
-    color: #800000;
-    padding: 10px;
-    text-align: left;
+    top: 0;
+    left: 0;
+    width: 100%;
     background-color: #FAF5E4;
-    border-radius: 60px; width: 90%;
-    
-
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 10%;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  
 }
+
+
 
 header h1{
 font-size: 20px;
-
+color: #800000;
 }
 
 
 
 nav li{
     
-    padding: 10px;
-    display: block;
-    font-family:monoscope;
+    display: inline;
     
 
 
@@ -74,8 +81,11 @@ nav a:hover::after {
 
 nav ul{
     display:flex;
+    gap: 25px;
+    list-style: none;
     justify-items: auto;
-    margin-left: 120%;
+    margin-right: 110px;
+    padding: 0;
     text-decoration: none;
 
 
@@ -88,8 +98,18 @@ main h3{
 main {
    padding: 70px;
    margin: 0 auto;
-   max-width: 600px;
+   max-width: 1000px;
 }
+
+.section{
+  padding: 2rem;
+  margin-bottom: 10rem;
+  border-radius: 12px;
+  box-shadow: 0 0px 10px rgba(0, 0, 0, 0.10);
+}
+
+
+
 
 h2{
     color: #800000;
@@ -101,20 +121,18 @@ h2{
 }
 
 
-.add-new-section{
-    display: flex; flex-direction: column;
-    align-items: center;
-    margin-left: 10%; margin-right: 10%;
+
     
 
 
    }
 
-label{
+.add-new-task-form label{
     display: block;
-    margin-bottom: 2px;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
     font-weight: bold;
-    color: #555;
+    color: #1F2937;
     
 }
 
@@ -137,8 +155,26 @@ input:focus{
 
 .add-new-section{
     background: #F5F5DC;
-    margin-bottom: 20px;
+    border-radius:12px;
+    margin-bottom: 2rem;
     padding: 20px;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: slideIn 0.6S easen forwards;
+    
+}
+
+@keyframes slideIn {
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+.add-new-task-form form{
+    display: flex;
+    flex-direction: column;
 }
 
 .search-section{
@@ -148,7 +184,7 @@ input:focus{
     padding: 15px;
     text-align: center;
     border-radius: 12px;
-    margin-top: 89px;
+    margin-top: 100px;
 }
 
 article{
@@ -162,7 +198,8 @@ article{
     opacity: 0;
     transform: translateY(40px);
     animation: slideUp 1s ease forwards;
-    margin-bottom: 310px;
+    margin-bottom: 100px;
+    box-shadow: none;
 }
 
 @keyframes slideUp {
@@ -175,12 +212,12 @@ article{
 
 button{
     display: flex;
-    background: teal;
+    background: #2c5f9e;
     color: white;
     border: none;
     padding: 12px 20px;
     border-radius: 5px;
-    width: 50%; height: 10%;
+    width: auto; height: 10%;
 
 
 }
@@ -192,14 +229,155 @@ button:hover{
     transition: transform 0.3s ease;
 }
 
-
+form {
+    
+    
+}
 .search-section input{
-    width: 400px
+    width: 400px;
    
 }
 
+
+
+
 .search-section button{
-    width: 100px;
+    width: 20px;
     margin-left: 20px;
+   
 
 }
+
+
+
+/* dashnoard */
+
+.dashboard-section{
+    margin: 0;
+    display: flex;
+    justify-content: center;
+
+}
+
+#status-grid{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6rem;
+    margin-bottom: 5rem;
+    margin-left: 60px;
+    margin-top: 20px;
+}
+
+
+.status-card{
+   background: var(--card);
+   padding: 1rem;
+   border-left: 6px solid var(--accent);
+   border-radius: 5px;
+   box-shadow: 0 6px 12px rgba(0,0,0,0.9);
+   text-align: center;
+  
+}
+
+.status-card :hover{
+    
+}
+
+.status-value{
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #2c5f9e;
+    margin-top: 0.5rem;
+
+
+}
+
+.progress-fill{
+    height: 100%;
+    width: 0%;
+    background: var(--success);
+    transition: width 0.3s ease;
+
+}
+.duration-target{
+    background: var(--card);
+    padding: 1rem;
+    border-radius: 10px;
+    margin-top: 2rem;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.05s);
+}
+
+.progress-bar{
+    background: #e5e7eb;
+    height: 15px;
+    border-radius: 10px;
+    margin-top: 1rem;
+    overflow: hidden;
+}
+
+.chart-container{
+    display: flex;
+    align-items: flex-end;
+    gap: 1rem;
+    height: 200px;
+
+}
+
+.chart-item{
+    flex: 1;
+    text-align: center;
+}
+
+.chart-bar{
+    width: 100%;
+    background: #2c5f9e;
+}
+
+.feature ul{
+ text-spacing-trim: 
+
+
+}
+
+ @media (min-width: 768px) {
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .search-section {
+        flex-direction: row;
+        align-items: flex-end;
+    }
+
+    .add-new-section {
+        flex-shrink: 0;
+    }
+}
+
+@media (min-width: 1024px) {
+    .stats-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+*:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}
+
+footer{
+    padding: 2rem;
+  margin-bottom: 10rem;
+  text-align: center;
+  margin-top: -40px;
+
+}
+
+.conversion-section {
+    display: flex;
+
+
+}
+
+}
+
