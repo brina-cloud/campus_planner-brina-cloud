@@ -76,7 +76,7 @@
             <section class="section" id="add-new-section" aria-live="assertive">
                     <h3> ADD A NEW TASK </h3>
                     <form id="form-list">
-                        <label for="task-title"> Task title </label>
+                        <label for="task-title"> Task/Event title </label>
                         <input type="text" id="task-title" name="title" required>
 
                         <label for="task-date"> Due Date </label>
@@ -120,7 +120,8 @@
                         <option value="duration-asc">Duration (asc)</option>
                         </select>
                     </div>
-       
+                    <div id="task-list" class="task-list"></div>
+                   
             </section>
 
             
@@ -170,6 +171,10 @@
             
          </footer>
 
-         <script src='scripts/script.js'></script>
+         <script src='scripts/storage.js'></script>
+         <script src="scripts/validators.js"></script>
+         <script src="scripts/ui.js"></script>
+         <script src="scripts/app.js"></script>
+
     </body> 
 </html>
