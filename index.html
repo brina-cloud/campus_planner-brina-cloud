@@ -82,7 +82,7 @@
                         <label for="task-date"> Due Date </label>
                         <input type="date" id="task-date" name="task-date" required>
 
-                        <label for="time"> Duration (minutes)</label> 
+                        <label for="duration"> Duration (minutes)</label> 
                         <input type="text" id="duration" name="duration" required>
 
                         <label for="description" > Description </label>
@@ -109,9 +109,9 @@
                 </div>
                 <div id="sort-select">
                     <h3> Sort data</h3>
-                    <label for="sort-select">Sort by:</label>
-                    <input type="select"></input>
-                    <select id="sort-select">
+                    <label for="sort">Sort by:</label>
+                    <input type="select" id="sort" name="sort" required>
+                    <select id="sort-list">
                         <option value="date-desc">Date (New)</option>
                         <option value="date-asc">Date (Old)</option>
                         <option value="title-asc">Title (A-Z)</option>
@@ -137,7 +137,10 @@
                         <li> Set academic goals</li>
 
                         <li> Manage time effectively</li>
+                        <li> Email: sabrinakaliza8@gmail.com </li>
+                        <li> Github name: <a href ="">brina-cloud</a></li>
                     </ul>
+                    
                     </p>
                 </section>
             
@@ -154,7 +157,7 @@
           <input type="text" id="minutes-time" placeholder="Minutes" />
           <p id="conversion-result" role="status" aria-live="polite"></p>
 
-          <button type="submit">Save Settings</button>
+          <button type="setting-btn">Save Settings</button>
           <button type="button" id="export-json" class="secondary">Export JSON</button>
           <label for="import-json" class="button-like">Import JSON</label>
           <input type="file" id="import-json" accept="application/json" />
@@ -167,6 +170,6 @@
             
          </footer>
 
-         <script src="seed.json"></script>
+         <script src='scripts/script.js'></script>
     </body> 
 </html>
