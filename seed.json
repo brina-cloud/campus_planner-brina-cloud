@@ -1,0 +1,122 @@
+[
+  {
+    "id": "task_1708345601234",
+    "title": "Complete Math Assignment",
+    "date": "2025-02-25",
+    "time": 120,
+    "tag": "Homework",
+    "desc": "Finish calculus problems chapter 5",
+    "done": false,
+    "created": "2025-02-15T10:30:00.000Z"
+  },
+  {
+    "id": "task_1708432001234",
+    "title": "Study for Chemistry Exam",
+    "date": "2025-02-28",
+    "time": 180,
+    "tag": "Exam",
+    "desc": "Review chapters 8-12, focus on organic chemistry",
+    "done": false,
+    "created": "2025-02-16T14:20:00.000Z"
+  },
+  {
+    "id": "task_1708259201234",
+    "title": "Read History Chapter",
+    "date": "2025-02-22",
+    "time": 60,
+    "tag": "Reading",
+    "desc": "Chapter 7 about World War II",
+    "done": true,
+    "created": "2025-02-14T09:15:00.000Z"
+  },
+  {
+    "id": "task_1708172801234",
+    "title": "Group Project Meeting",
+    "date": "2025-02-23",
+    "time": 90,
+    "tag": "Project",
+    "desc": "Discuss presentation slides for Business class",
+    "done": true,
+    "created": "2025-02-13T11:00:00.000Z"
+  },
+  {
+    "id": "task_1708518401234",
+    "title": "Write Literature Essay",
+    "date": "2025-03-01",
+    "time": 150,
+    "tag": "Writing",
+    "desc": "Analysis of Macbeth, minimum 1500 words",
+    "done": false,
+    "created": "2025-02-17T08:45:00.000Z"
+  },
+  {
+    "id": "task_1708372801234",
+    "title": "Physics Lab Report",
+    "date": "2025-02-26",
+    "time": 120,
+    "tag": "Lab",
+    "desc": "Write up pendulum experiment results",
+    "done": false,
+    "created": "2025-02-15T15:20:00.000Z"
+  },
+  {
+    "id": "task_1708604801234",
+    "title": "Practice Spanish Vocabulary",
+    "date": "2025-02-24",
+    "time": 45,
+    "tag": "Language",
+    "desc": "Learn 50 new words for quiz",
+    "done": false,
+    "created": "2025-02-18T07:30:00.000Z"
+  },
+  {
+    "id": "task_1708459201234",
+    "title": "Coding Assignment",
+    "date": "2025-02-27",
+    "time": 180,
+    "tag": "Programming",
+    "desc": "Build task manager with JavaScript",
+    "done": false,
+    "created": "2025-02-16T10:00:00.000Z"
+  },
+  {
+    "id": "task_1708086401234",
+    "title": "Biology Quiz Prep",
+    "date": "2025-02-21",
+    "time": 60,
+    "tag": "Exam",
+    "desc": "Study cell structure and photosynthesis",
+    "done": true,
+    "created": "2025-02-12T13:15:00.000Z"
+  },
+  {
+    "id": "task_1708691201234",
+    "title": "Research Paper Outline",
+    "date": "2025-03-05",
+    "time": 90,
+    "tag": "Research",
+    "desc": "Create detailed outline for psychology paper",
+    "done": false,
+    "created": "2025-02-19T09:30:00.000Z"
+  },
+  {
+    "id": "task_1708545601234",
+    "title": "Economics Problem Set",
+    "date": "2025-02-24",
+    "time": 75,
+    "tag": "Homework",
+    "desc": "Supply and demand analysis questions",
+    "done": false,
+    "created": "2025-02-17T16:00:00.000Z"
+  },
+  {
+    "id": "task_1708632001234",
+    "title": "Art Project Sketches",
+    "date": "2025-02-29",
+    "time": 120,
+    "tag": "Creative",
+    "desc": "Preliminary sketches for final project",
+    "done": false,
+    "created": "2025-02-18T14:45:00.000Z"
+  }
+]

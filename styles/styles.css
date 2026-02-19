@@ -339,6 +339,10 @@ form {
 
 }
 
+@media (min-width: 360px) {
+    
+}
+
  @media (min-width: 768px) {
     .stats-grid {
         grid-template-columns: repeat(2, 1fr);

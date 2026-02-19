@@ -111,18 +111,22 @@ function drawChart() {
         let d = new Date(now);
         d.setDate(d.getDate() - i);
         let key = d.toISOString().split('T')[0];
+        let label = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][d.getDay()];
         let count = tasks.filter(t => t.created && t.created.startsWith(key)).length;
-        days.push(count);
+        days.push({label, count});
     }
     
-    let max = Math.max(...days, 1);
+    let max = Math.max(...days.map(d => d.count), 1);
     let html = '';
-    days.forEach(n => {
-        let h = (n / max) * 100;
-        html += `<div style="height:${h}%; width:10px;"></div>`;
+    days.forEach(d => {
+        let h = (d.count / max) * 100;
+        html += `<div style="height:${h}%; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; width:50%">
+            <span style="font-size:0.7rem; margin-bottom:2px;">${d.count}</span>
+            <div style="width:50%; background:#2c5f9e; flex:1; border-radius:4px 4px 0 0;"></div>
+            <span style="font-size:0.7rem; margin-top:4px; color:#666;">${d.label}</span>
+        </div>`;
     });
     
     let chart = document.getElementById('trend-chart');
     if (chart) chart.innerHTML = html;
 }
-
