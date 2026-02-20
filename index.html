@@ -1,180 +1,196 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>My Campus Planner</title>
-        <link rel="stylesheet" href="styles/styles.css">
 
-    </head>
-    <body>
-        <header>
-            <h1> My Campus Planner 📅 </h1>
-            <nav id="nav-list"> 
-                <ul>
-                    <li> <a href="#dashboard-section">Dashboard</a> </li>
-                    <li> <a href="#welcome-section"> Home </a>
-                    <li> <a href="#search-section">Search</a></li>
-                    <li> <a href="#add-new-section">Form</a></li>
-                    <li> <a href="#about-section">About</a></li>
-                </ul>
-            </nav>
-        </header>
-        <main>
-            <article>
-            <section class="section" id="welcome-section">
-                <h2> Welcome to My Campus Planner! </h2>
-                <p> Your ultimate tool for managing your campus life. Stay organized, plan your schedule, and never miss an important event again! </p>
-            </section>
-            </article>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Campus Planner - Organize your campus life, manage tasks, track deadlines and stay productive.">
+    <title>My Campus Planner</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/styles.css">
+</head>
 
-            <section class="section" id="dashboard-section" rolr="status" aria-live="polite">
-                <h3> DASHBOARD </h3>
-                <div id="status-grid">
-                    <div class="status-card">
-                        <h4> Total Tasks </h4>
-                        <p class="status-value" id="status-total"> 0 </p>
+<body>
+    
+    <div id="toast-container" aria-live="polite"></div>
 
+    <header>
+        <h1>My Campus Planner</h1>
+        <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav id="nav-list">
+            <ul>
+                <li><a href="#welcome-section">Home</a></li>
+                <li><a href="#dashboard-section">Dashboard</a></li>
+                <li><a href="#add-new-section">Add Task</a></li>
+                <li><a href="#search-section">Search</a></li>
+                <li><a href="#settings-section">Settings</a></li>
+                <li><a href="#about-section">About</a></li>
+            </ul>
+        </nav>
+    </header>
 
-                    </div>
-                    <div class="status-card">
-                        <h4> Completed </h4>
-                        <p class="status-value" id="status-completed"> 0 </p>
-                    </div>
-                    <div class="status-card">
-                        <h4> Pending </h4>
-                        <p class="status-value" id="status-pending"> 0 </p>
-                    </div>
-                    <div class="status-card">
-                        <h4> Top Tag </h4>
-                        <p class="status-value" id="status-tag"> -- </p>
+    <main>
+       
+        <section class="section hero-section" id="welcome-section">
+            <h2>Welcome to Campus Planner!</h2>
+            <p>Your ultimate tool for managing your campus life. Stay organized, plan your schedule, and never miss
+                an important event again!</p>
+        </section>
 
+       
+        <section class="section" id="dashboard-section" role="status" aria-live="polite">
+            <h3>Dashboard</h3>
+            <div id="status-grid">
+                <div class="status-card">
+                    <h4>Total Tasks</h4>
+                    <p class="status-value" id="status-total">0</p>
+                </div>
+                <div class="status-card">
+                    <h4>Completed</h4>
+                    <p class="status-value" id="status-completed">0</p>
+                </div>
+                <div class="status-card">
+                    <h4>Pending</h4>
+                    <p class="status-value" id="status-pending">0</p>
+                </div>
+                <div class="status-card">
+                    <h4>Top Tag</h4>
+                    <p class="status-value" id="status-tag">--</p>
+                </div>
+            </div>
+
+            <div class="duration-target">
+                <h3>Weekly Duration Target</h3>
+                <div class="target-info">
+                    <p>Target: <span id="target-display">0</span> minutes</p>
+                    <p>This week: <span id="week-duration">0</span> minutes</p>
+                    <p class="target-status" id="target-status"></p>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill" role="progressbar" aria-valuenow="0" aria-valuemin="0"
+                        aria-valuemax="100"></div>
+                </div>
+            </div>
+
+            <div class="trend-chart">
+                <h3>Last 7 Days Activity</h3>
+                <div class="chart-container" id="trend-chart" aria-label="Bar chart showing task count for 7 days">
+                </div>
+            </div>
+        </section>
+
+       
+        <section class="section" id="add-new-section" aria-live="assertive">
+            <h3>Add a New Task</h3>
+            <form class="form-list" id="form-list">
+                <label for="task-title">Task/Event Title</label>
+                <input class="add-new-task-input" type="text" id="task-title" name="title"
+                    placeholder="e.g. Math Assignment" required>
+
+                <label for="task-date">Due Date</label>
+                <input class="add-new-task-input" type="date" id="task-date" name="task-date" required>
+
+                <label for="duration">Duration (minutes)</label>
+                <input class="add-new-task-input" type="text" id="duration" name="duration" placeholder="e.g. 120"
+                    required>
+
+                <label for="description">Description</label>
+                <input class="add-new-task-input" type="text" id="description" name="description"
+                    placeholder="Brief description...">
+
+                <label for="tags">Tags</label>
+                <input class="add-new-task-input" type="text" id="tags" name="tags" placeholder="e.g. Homework"
+                    required>
+
+                <button class="form-button" type="submit">Add Task</button>
+            </form>
+        </section>
+
+        <!-- Search & Task List Section -->
+        <section class="section" id="search-section">
+            <div id="search-box">
+                <h3>Search Tasks</h3>
+                <div class="search-controls">
+                    <input type="text" id="search-input" placeholder="Search by title, tags, or description...">
+                    <button id="search-btn">Search</button>
+                </div>
+            </div>
+            <div id="sort-select">
+                <label for="sort-list">Sort by:</label>
+                <select id="sort-list">
+                    <option value="date-desc">Date (Newest)</option>
+                    <option value="date-asc">Date (Oldest)</option>
+                    <option value="title-asc">Title (A–Z)</option>
+                    <option value="title-desc">Title (Z–A)</option>
+                    <option value="duration-desc">Duration (High–Low)</option>
+                    <option value="duration-asc">Duration (Low–High)</option>
+                </select>
+            </div>
+            <div id="task-list" class="task-list"></div>
+        </section>
+
+        <!-- Settings Section -->
+        <section class="section" id="settings-section">
+            <h3>Settings</h3>
+            <form id="settings-form">
+                <label for="target-minutes">Weekly target (minutes)</label>
+                <input type="text" id="target-minutes" placeholder="e.g. 600" required>
+
+                <label for="cap-minutes">Weekly cap (minutes)</label>
+                <input type="text" id="cap-minutes" placeholder="e.g. 900" required>
+
+                <label for="minutes-time">Convert minutes to hours</label>
+                <input type="text" id="minutes-time" placeholder="Enter minutes...">
+                <p id="conversion-result" role="status" aria-live="polite"></p>
+
+                <div class="settings-buttons">
+                    <button type="submit">Save Settings</button>
+                    <button type="button" id="export-json" class="secondary">Export JSON</button>
+                    <div id="import-json-wrapper">
+                        <label for="import-json" class="button-like">Import JSON</label>
+                        <input type="file" id="import-json" accept="application/json">
                     </div>
                 </div>
-                <div class="duration-target">
-                    <h3> WEEKLY DURATION TARGET </h3>
-                    <div class="target-info">
-                        <p> Target: <span id="target-display">0</span> minutes</p>
-                        <p> This week: <span id="week-duration">0</span> minutes</p>
-                        <p class="target-status" id="target-status"></p>
-                    </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" id="progress-fill" role="progresbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                <p id="settings-status" role="status" aria-live="polite"></p>
+            </form>
+        </section>
 
-                    </div>
+        <!-- About Section -->
+        <section class="section" id="about-section">
+            <h3>About Campus Planner</h3>
+            <p>This task assistant app helps students with time management and increased productivity.</p>
+            <p>As a student, I understand how challenging it can be to manage classes, assignments, deadlines, and
+                personal goals all at once. That's why I built Campus Planner — to make planning easier, clearer, and
+                less stressful.</p>
+            <ul id="feature">
+                <li>Organize class schedules</li>
+                <li>Track assignments and deadlines</li>
+                <li>Set academic goals</li>
+                <li>Manage time effectively</li>
+            </ul>
+            <div class="contact-info">
+                <p>📧 Email: sabrinakaliza8@gmail.com</p>
+                <p>🔗 Github: <a href="https://github.com/brina-cloud" target="_blank" rel="noopener">brina-cloud</a>
+                </p>
+            </div>
+        </section>
+    </main>
 
-                </div>
-                <div class="trend-chart">
-                    <h3> Last 7 days activity </h3>
-                    <div class="chart-container" id="trend-chart" aria-label=""Bar chart showing task count for 7 days"></div>
-                </div>
+    <footer>
+        <p>Created by Kaliza Sabrina &middot; My Campus Planner</p>
+    </footer>
 
+    <script src='scripts/storage.js'></script>
+    <script src="scripts/validators.js"></script>
+    <script src="scripts/ui.js"></script>
+    <script src="scripts/app.js"></script>
+</body>
 
-
-
-            </section>
-            <section class="section" id="add-new-section" aria-live="assertive">
-                    <h3> ADD A NEW TASK </h3>
-                    <form id="form-list">
-                        <label for="task-title"> Task/Event title </label>
-                        <input type="text" id="task-title" name="title" required>
-
-                        <label for="task-date"> Due Date </label>
-                        <input type="date" id="task-date" name="task-date" required>
-
-                        <label for="duration"> Duration (minutes)</label> 
-                        <input type="text" id="duration" name="duration" required>
-
-                        <label for="description" > Description </label>
-                        <input type="text" id="description" name="description" required>
-                    
-                        <label for="tags"> Tags </label>
-                        <input type="text" id="tags" name="tags" required>
-
-                        <button type="submit"> Add Task </button> 
-                    </form>
-                    
-
-            </section>
-
-            <section class="update-section">
-
-            </section>
-
-            <section class="section" id="search-section">
-                <div id="search-box"  >
-                    <h3> SEARCH TASKS </h3>
-                    <input type="text" id="search-input" placeholder="Search by title, tags, or description">
-                    <button id="search-btn"> Search </button>
-                </div>
-                <div id="sort-select">
-                    <h3> Sort data</h3>
-                    <label for="sort">Sort by:</label>
-                    <input type="select" id="sort" name="sort" required>
-                    <select id="sort-list">
-                        <option value="date-desc">Date (New)</option>
-                        <option value="date-asc">Date (Old)</option>
-                        <option value="title-asc">Title (A-Z)</option>
-                        <option value="title-desc">Title (Z-A)</option>
-                        <option value="duration-desc">Duration (disc)</option>
-                        <option value="duration-asc">Duration (asc)</option>
-                        </select>
-                    </div>
-                    <div id="task-list" class="task-list"></div>
-                   
-            </section>
-
-            
-            <section class="section" id="about-section">
-                <h3> About Campus Planner </h3>
-                <p> This task assistant app that helps students will time management and increase productivity.
-                <p> As a student, I understand how challenging it can be to manage classes, assignments, deadlines, and personal goals all at once. That’s why I built Campus Planner — to make planning easier, clearer, and less stressful.
-                <ul id="feature"> 
-
-                    <li> Organize class schedules</li>
-
-                        <li> Track assignments and deadlines</li>
-
-                        <li> Set academic goals</li>
-
-                        <li> Manage time effectively</li>
-                        <li> Email: sabrinakaliza8@gmail.com </li>
-                        <li> Github name: <a href ="">brina-cloud</a></li>
-                    </ul>
-                    
-                    </p>
-                </section>
-            
-              <section class="section" id="settings-section">
-        <h3>Settings</h3>
-        <form id="settings-form">
-          <label for="target-minutes">Weekly target (minutes)</label>
-          <input type="text" id="target-minutes" required />
-
-          <label for="cap-minutes">Weekly cap (minutes)</label>
-          <input type="text" id="cap-minutes" required />
-
-          <label for="minutes-time">Convert minutes to hours</label>
-          <input type="text" id="minutes-time" placeholder="Minutes" />
-          <p id="conversion-result" role="status" aria-live="polite"></p>
-
-          <button type="setting-btn">Save Settings</button>
-          <button type="button" id="export-json" class="secondary">Export JSON</button>
-          <label for="import-json" class="button-like">Import JSON</label>
-          <input type="file" id="import-json" accept="application/json" />
-          <p id="settings-status" role="status" aria-live="polite"></p>
-        </form>
-      </section>
-        </main>
-        <footer>
-            <p>Created by Kaliza Sabrina. My Campus Planner<p>
-            
-         </footer>
-
-         <script src='scripts/storage.js'></script>
-         <script src="scripts/validators.js"></script>
-         <script src="scripts/ui.js"></script>
-         <script src="scripts/app.js"></script>
-
-    </body> 
 </html>

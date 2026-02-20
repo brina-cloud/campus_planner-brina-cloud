@@ -11,16 +11,16 @@ A task management web app for students to organize assignments, track deadlines,
 ## Theme
 
 **Color Palette:**
-- Primary: `#800000` (Maroon) - Header, headings, accents
-- Secondary: `#2c5f9e` (Blue) - Buttons, task borders
-- Background: `#faf5e4` (Beige) - Page background
-- Content: `#f5f5dc` (Cream) - Cards, sections
-- Success: `#27ae60` (Green) - Completed tasks
-- Warning: `#d9534f` (Red) - Errors, caps exceeded
+- Cream: `#FFFBF0` — Page background
+- Peach: `#FFCE99` — Accents, tags, card highlights
+- Orange: `#FF9F43` — Buttons, links, progress bar
+- Brown: `#5C3310` — Header, headings, text emphasis
+- Success: `#27ae60` — Completed tasks
+- Danger: `#e74c3c` — Errors, caps exceeded
 
 **Typography:**
-- Font: Arial, sans-serif
-- Sizes: Responsive scaling from mobile to desktop
+- Font: Inter (Google Fonts), system fallbacks
+- Responsive scaling across all breakpoints
 
 ---
 
@@ -37,14 +37,14 @@ A task management web app for students to organize assignments, track deadlines,
 - ✅ 7-day activity trend chart
 - ✅ Data persistence (localStorage)
 - ✅ Import/export JSON
+- ✅ Toast notifications (non-intrusive feedback)
 
 ### Advanced Features
 - ✅ Regex validation (6 patterns, 2 advanced)
-- ✅ Special @tag: search syntax
 - ✅ Minutes to hours converter
 - ✅ Duplicate task detection on import
 - ✅ Real date validation (catches Feb 30)
-- ✅ State management pattern
+- ✅ XSS protection via HTML escaping
 - ✅ Modular JavaScript architecture
 
 ### Accessibility
@@ -54,6 +54,13 @@ A task management web app for students to organize assignments, track deadlines,
 - ✅ Semantic HTML structure
 - ✅ High contrast colors
 - ✅ Responsive design (mobile-first)
+
+### Responsive Design
+- ✅ Mobile hamburger navigation menu
+- ✅ Breakpoints: 480px, 768px, 1024px
+- ✅ Fluid grid layouts for dashboard cards
+- ✅ Stacked forms and buttons on small screens
+- ✅ Full-width toasts on mobile
 
 ---
 
@@ -176,29 +183,17 @@ A task management web app for students to organize assignments, track deadlines,
 
 ---
 
-### Special Pattern: Tag Search
-**Pattern:** `/^@tag:(\w+)$/i`
-
-**Purpose:** Special search shortcut
-
-**Examples:**
-```
-Search: "@tag:homework" → Shows only tasks tagged "Homework"
-Search: "@tag:exam"     → Shows only tasks tagged "Exam"
-Search: "homework"      → Normal search (searches title + tag)
-```
-
----
-
 ## Keyboard Navigation
 
-### Global Navigation
+### Global Shortcuts
 | Key | Action |
 |---|---|
-| `Tab` | Move to next focusable element |
-| `Shift + Tab` | Move to previous element |
-| `Enter` | Activate button/link |
-| `Esc` | Cancel current action |
+| `Ctrl/Cmd + K` | Focus search box and scroll to it |
+| `Alt + N` | Jump to Add Task form and focus title |
+| `Escape` | Close mobile menu / clear search |
+| `1` – `6` | Jump to section (Home, Dashboard, Add Task, Search, Settings, About) |
+
+> **Note:** Number keys only work when you're not focused on an input field.
 
 ### Form Navigation
 | Key | Action |
@@ -206,24 +201,12 @@ Search: "homework"      → Normal search (searches title + tag)
 | `Tab` | Next field |
 | `Shift + Tab` | Previous field |
 | `Enter` | Submit form |
-| `Esc` | Clear/cancel |
 
 ### Task Cards
 | Key | Action |
 |---|---|
 | `Tab` | Focus next button |
 | `Enter` | Activate focused button |
-| `E` | Edit (when card focused) |
-| `D` | Delete (when card focused) |
-| `Space` | Toggle done |
-
-### Search & Sort
-| Key | Action |
-|---|---|
-| `Ctrl/Cmd + F` | Focus search box |
-| `Arrow Down` | Open sort dropdown |
-| `Arrow Up/Down` | Navigate options |
-| `Enter` | Select option |
 
 ---
 
@@ -238,91 +221,57 @@ Search: "homework"      → Normal search (searches title + tag)
 
 ### Keyboard Users
 - **Focus Visible:** All interactive elements show focus outline
-- **Skip Links:** Can skip to main content
 - **Tab Order:** Logical, follows visual flow
 - **No Keyboard Traps:** Can always escape modals/dialogs
 
 ### Visual Accessibility
 - **High Contrast:** WCAG AA compliant color ratios
 - **Text Sizing:** Responsive, scales with browser settings
-- **No Color-Only:** Status indicated by icons + color
 - **Clear Focus:** 2px solid outline on focused elements
-
-### Motor Impairments
-- **Large Click Targets:** Buttons minimum 44x44px
-- **Spacing:** Adequate padding between elements
-- **No Precise Timing:** No actions require speed
-- **Sticky Header:** Navigation always accessible
 
 ### Cognitive Accessibility
 - **Clear Language:** Simple, direct instructions
-- **Consistent Layout:** Same structure on every page
+- **Consistent Layout:** Same structure across all sections
 - **Error Prevention:** Confirmation dialogs for destructive actions
-- **Visual Feedback:** Clear success/error messages
-- **Undo Support:** Can undo most actions
-
----
-
-## Running Tests
-
-### Option 1: Manual Testing
-1. Open `tests.html` in browser
-2. Click "Run All Tests"
-3. View results (pass/fail for each test)
-
-### Option 2: Console Testing
-```javascript
-// Open browser console (F12)
-// Tests run automatically on page load
-// Check console for detailed results
-```
-
-### Test Coverage
-- ✅ Regex pattern validation (13 tests)
-- ✅ Form validation (8 tests)
-- ✅ CRUD operations (6 tests)
-- ✅ Search functionality (5 tests)
-- ✅ Sort functionality (6 tests)
-- ✅ Dashboard calculations (7 tests)
-- ✅ Utility functions (5 tests)
-
-**Total: 50 automated tests**
+- **Visual Feedback:** Toast notifications for all actions
+- **Undo Support:** Can undo completed tasks
 
 ---
 
 ## Installation & Setup
 
 ### Basic Setup
-1. Download all files to same folder
-2. Open `index.html` in browser
+1. Download all files to the same folder
+2. Open `index.html` in a browser
 3. Start adding tasks!
 
 ### File Structure
 ```
 campus-planner/
-├── index.html          # Main page
-├── styles.css          # All styling
-├── validators.js       # Regex patterns
-├── state.js            # State management
-├── storage.js          # Persistence
-├── ui.js               # Display logic
-├── app.js              # Event handlers
-├── seed.json           # Sample data
-├── tests.html          # Test suite
-└── README.md           # This file
+├── index.html              # Main page
+├── styles/
+│   └── styles.css          # All styling (responsive)
+├── scripts/
+│   ├── validators.js       # Regex patterns & validation
+│   ├── storage.js          # localStorage persistence
+│   ├── ui.js               # Display logic & toast system
+│   └── app.js              # Event handlers & navigation
+├── seed.json               # Sample data (12 tasks)
+├── tests.html              # Test suite
+└── README.md               # This file
 ```
 
 ### Loading Sample Data
 **Method 1:** Import via UI
-- Go to Settings → Import Data → Select `seed.json`
+- Go to Settings → Click "Import JSON" → Select `seed.json`
 
 **Method 2:** Browser Console
 ```javascript
 fetch('seed.json')
   .then(r => r.json())
   .then(data => {
-    data.forEach(t => state.tasks.push(t));
-    saveState();
+    data.forEach(t => tasks.push(t));
+    save();
     render();
   });
 ```
@@ -354,7 +303,7 @@ fetch('seed.json')
 - localStorage limited to ~5-10MB per domain
 - No cloud sync between devices
 - No collaborative features
-- No mobile app (web only)
+- No native mobile app (responsive web app)
 - Requires JavaScript enabled
 
 ---
@@ -374,7 +323,7 @@ fetch('seed.json')
 
 ## License
 
-Educational project - Free to use and modify
+Educational project — Free to use and modify
 
 ---
 
@@ -382,8 +331,9 @@ Educational project - Free to use and modify
 
 Built with:
 - Vanilla JavaScript (ES6)
-- CSS3 (Flexbox, Grid)
+- CSS3 (Flexbox, Grid, Custom Properties, Animations)
 - HTML5 (Semantic markup)
+- Google Fonts (Inter)
 - localStorage API
 - FileReader API
 
@@ -394,11 +344,11 @@ No frameworks or libraries required!
 ## Contact
 
 **Kaliza Sabrina**
-- Email: s.kaliza1@alustudent.com
+- Email: sabrinakaliza8@gmail.com
 - GitHub: brina-cloud
 
 For bugs or suggestions, please reach out!
 
 ---
 
-**Last Updated:** February 2025
+**Last Updated:** February 2026

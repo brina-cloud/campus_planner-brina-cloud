@@ -1,64 +1,90 @@
-function render() {
-    let search = document.getElementById('search-input').value;
-    let sort = document.getElementById('sort-list').value;
+function showToast(message, type) {
+    type = type || 'info';
+    var container = document.getElementById('toast-container');
+    if (!container) return;
 
-    let list = tasks.slice();
+    var toast = document.createElement('div');
+    toast.className = 'toast' + (type === 'success' ? ' success' : type === 'error' ? ' error' : '');
+    toast.textContent = message;
+    container.appendChild(toast);
+
+    setTimeout(function () {
+        if (toast.parentNode) toast.parentNode.removeChild(toast);
+    }, 3000);
+}
+
+function render() {
+    var search = document.getElementById('search-input').value;
+    var sort = document.getElementById('sort-list').value;
+
+    var list = tasks.slice();
 
     if (search) {
         try {
-            let rx = new RegExp(search, 'i');
-            list = list.filter(t => rx.test(t.title + ' ' + t.tag + ' ' + (t.desc || '')));
-        } catch {
-            search = search.toLowerCase();
-            list = list.filter(t => (t.title + ' ' + t.tag + ' ' + (t.desc || '')).toLowerCase().includes(search));
+            var rx = new RegExp(search, 'i');
+            list = list.filter(function (t) {
+                return rx.test(t.title + ' ' + t.tag + ' ' + (t.desc || ''));
+            });
+        } catch (e) {
+            var lower = search.toLowerCase();
+            list = list.filter(function (t) {
+                return (t.title + ' ' + t.tag + ' ' + (t.desc || '')).toLowerCase().includes(lower);
+            });
         }
     }
 
-    if (sort === 'date-desc') list.sort((a,b) => new Date(b.date) - new Date(a.date));
-    if (sort === 'date-asc') list.sort((a,b) => new Date(a.date) - new Date(b.date));
-    if (sort === 'title-asc') list.sort((a,b) => a.title.localeCompare(b.title));
-    if (sort === 'title-desc') list.sort((a,b) => b.title.localeCompare(a.title));
-    if (sort === 'duration-desc') list.sort((a,b) => b.time - a.time);
-    if (sort === 'duration-asc') list.sort((a,b) => a.time - b.time);
+    if (sort === 'date-desc') list.sort(function (a, b) { return new Date(b.date) - new Date(a.date); });
+    if (sort === 'date-asc') list.sort(function (a, b) { return new Date(a.date) - new Date(b.date); });
+    if (sort === 'title-asc') list.sort(function (a, b) { return a.title.localeCompare(b.title); });
+    if (sort === 'title-desc') list.sort(function (a, b) { return b.title.localeCompare(a.title); });
+    if (sort === 'duration-desc') list.sort(function (a, b) { return b.time - a.time; });
+    if (sort === 'duration-asc') list.sort(function (a, b) { return a.time - b.time; });
 
     showTasks(list);
     updateStats();
 }
 
 function showTasks(list) {
-    let html = '';
-    list.forEach(t => {
-        html += `<div class="task-card">
-            <div class="task-header">
-                <div class="task-buttons" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:0.5rem; margin-bottom:0.8rem; margin-top:20px">
-                    
-                    <button onclick="editTask('${t.id}')">Edit</button>
-                    <button onclick="deleteTask('${t.id}')">Delete</button>
-                    <button onclick="toggleTask('${t.id}')">${t.done ? 'Undo' : 'Done'}</button>
-                </div>
-            </div>
-            <div class="task-info" ">
-                <div> Title: ${t.title}</div>
-                <div>Due: ${t.date}</div>
-                <div>Time: ${t.time} min</div>
-                <div>Tag: ${t.tag}</div>
-                ${t.desc ? '<div>Note: ' + t.desc + '</div>' : ''}
-            </div>
-        </div>`;
+    var html = '';
+    list.forEach(function (t) {
+        var cardClass = 'task-card ' + (t.done ? 'done' : 'pending');
+        html += '<div class="' + cardClass + '">' +
+            '<div class="task-header">' +
+            '<span class="task-title">' + escapeHTML(t.title) + '</span>' +
+            '<div class="task-buttons">' +
+            '<button class="btn-edit" onclick="editTask(\'' + t.id + '\')">✏️ Edit</button>' +
+            '<button class="btn-delete" onclick="deleteTask(\'' + t.id + '\')">🗑️ Delete</button>' +
+            '<button class="btn-toggle" onclick="toggleTask(\'' + t.id + '\')">' + (t.done ? '↩️ Undo' : '✅ Done') + '</button>' +
+            '</div>' +
+            '</div>' +
+            '<div class="task-info">' +
+            '<div><strong>Due:</strong> ' + escapeHTML(t.date) + '</div>' +
+            '<div><strong>Duration:</strong> ' + t.time + ' min</div>' +
+            '<div><strong>Tag:</strong> <span class="task-tag">' + escapeHTML(t.tag) + '</span></div>' +
+            (t.desc ? '<div><strong>Note:</strong> ' + escapeHTML(t.desc) + '</div>' : '') +
+            '</div>' +
+            '</div>';
     });
-    
-    let container = document.getElementById('task-list');
-    if (container) container.innerHTML = html || '<p>No tasks</p>';
+
+    var container = document.getElementById('task-list');
+    if (container) container.innerHTML = html || '<p>No tasks found. Add one above!</p>';
+}
+
+function escapeHTML(str) {
+    var div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
 }
 
 function updateStats() {
     document.getElementById('status-total').textContent = tasks.length;
-    document.getElementById('status-completed').textContent = tasks.filter(t => t.done).length;
-    document.getElementById('status-pending').textContent = tasks.filter(t => !t.done).length;
+    document.getElementById('status-completed').textContent = tasks.filter(function (t) { return t.done; }).length;
+    document.getElementById('status-pending').textContent = tasks.filter(function (t) { return !t.done; }).length;
 
-    let tags = {};
-    tasks.forEach(t => tags[t.tag] = (tags[t.tag] || 0) + 1);
-    let top = Object.entries(tags).sort((a,b) => b[1] - a[1])[0];
+    var tags = {};
+    tasks.forEach(function (t) { tags[t.tag] = (tags[t.tag] || 0) + 1; });
+    var entries = Object.entries(tags).sort(function (a, b) { return b[1] - a[1]; });
+    var top = entries[0];
     document.getElementById('status-tag').textContent = top ? top[0] : '--';
 
     updateProgress();
@@ -66,67 +92,67 @@ function updateStats() {
 }
 
 function updateProgress() {
-    let now = new Date();
-    let week = new Date(now - 7 * 24 * 60 * 60 * 1000);
-    let weekTotal = 0;
-    
-    tasks.forEach(t => {
+    var now = new Date();
+    var week = new Date(now - 7 * 24 * 60 * 60 * 1000);
+    var weekTotal = 0;
+
+    tasks.forEach(function (t) {
         if (new Date(t.date) >= week && new Date(t.date) <= now) {
             weekTotal += t.time;
         }
     });
-    
+
     document.getElementById('target-display').textContent = config.target;
     document.getElementById('week-duration').textContent = weekTotal;
 
-    let bar = document.getElementById('progress-fill');
-    let status = document.getElementById('target-status');
-    
+    var bar = document.getElementById('progress-fill');
+    var status = document.getElementById('target-status');
+
     if (config.target > 0) {
-        let pct = Math.min((weekTotal / config.target) * 100, 100);
+        var pct = Math.min((weekTotal / config.target) * 100, 100);
         bar.style.width = pct + '%';
-        
+
         if (config.cap > 0 && weekTotal > config.cap) {
-            status.textContent = 'Over cap by ' + (weekTotal - config.cap) + ' min';
-            status.style.color = '#d9534f';
+            status.textContent = '⚠️ Over cap by ' + (weekTotal - config.cap) + ' min';
+            status.style.color = '#e74c3c';
         } else if (weekTotal >= config.target) {
-            status.textContent = 'Goal met!';
+            status.textContent = '🎉 Goal met!';
             status.style.color = '#27ae60';
         } else {
-            status.textContent = (config.target - weekTotal) + ' min left';
-            status.style.color = '#333';
+            status.textContent = '📊 ' + (config.target - weekTotal) + ' min left to reach target';
+            status.style.color = '#5C3310';
         }
     } else {
         bar.style.width = '0%';
-        status.textContent = 'Set target in settings';
+        status.textContent = 'Set a target in Settings ⬇️';
         status.style.color = '#999';
     }
 }
 
 function drawChart() {
-    let days = [];
-    let now = new Date();
-    
-    for (let i = 6; i >= 0; i--) {
-        let d = new Date(now);
+    var days = [];
+    var now = new Date();
+
+    for (var i = 6; i >= 0; i--) {
+        var d = new Date(now);
         d.setDate(d.getDate() - i);
-        let key = d.toISOString().split('T')[0];
-        let label = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][d.getDay()];
-        let count = tasks.filter(t => t.created && t.created.startsWith(key)).length;
-        days.push({label, count});
+        var key = d.toISOString().split('T')[0];
+        var label = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][d.getDay()];
+        var count = tasks.filter(function (t) { return t.created && t.created.startsWith(key); }).length;
+        days.push({ label: label, count: count });
     }
-    
-    let max = Math.max(...days.map(d => d.count), 1);
-    let html = '';
-    days.forEach(d => {
-        let h = (d.count / max) * 100;
-        html += `<div style="height:${h}%; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; width:50%">
-            <span style="font-size:0.7rem; margin-bottom:2px;">${d.count}</span>
-            <div style="width:50%; background:#2c5f9e; flex:1; border-radius:4px 4px 0 0;"></div>
-            <span style="font-size:0.7rem; margin-top:4px; color:#666;">${d.label}</span>
-        </div>`;
+
+    var max = Math.max.apply(null, days.map(function (d) { return d.count; }).concat([1]));
+    var html = '';
+    days.forEach(function (d) {
+        var h = (d.count / max) * 100;
+        html += '<div class="chart-day">' +
+            '<span class="count">' + d.count + '</span>' +
+            '<div class="bar" style="height:' + Math.max(h, 4) + '%"></div>' +
+            '<span class="label">' + d.label + '</span>' +
+            '</div>';
     });
-    
-    let chart = document.getElementById('trend-chart');
+
+    var chart = document.getElementById('trend-chart');
     if (chart) chart.innerHTML = html;
 }

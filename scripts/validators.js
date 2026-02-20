@@ -7,27 +7,27 @@ const regex = {
     clock: /\b([01]\d|2[0-3]):([0-5]\d)\b/g
 };
 
-function validate(field, val) {
+function validate(key, val) {
     val = val.trim();
-    if (!val) return field + ' required';
+    if (!val) return key + ' required';
     
-    if (field === 'title') {
+    if (key === 'title') {
         if (!regex.title.test(val)) return 'extra spaces';
         if (regex.dupe.test(val)) return 'duplicate words';
         if (val.length < 3) return 'min 3 chars';
     }
     
-    if (field === 'date') {
+    if (key === 'date') {
         if (!regex.date.test(val)) return 'use YYYY-MM-DD';
     }
     
-    if (field === 'time') {
+    if (key === 'time') {
         if (!regex.time.test(val)) return 'invalid number';
         let n = parseFloat(val);
         if (n <= 0 || n > 1440) return 'must be 1-1440';
     }
     
-    if (field === 'tag') {
+    if (key === 'tag') {
         if (!regex.tag.test(val)) return 'letters/spaces/hyphens only';
     }
     
