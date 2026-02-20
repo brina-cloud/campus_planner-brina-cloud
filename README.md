@@ -1,4 +1,4 @@
-# Campus Planner
+# RALLY
 
 A task management web app for students to organize assignments, track deadlines, and manage study time.
 
@@ -7,6 +7,7 @@ A task management web app for students to organize assignments, track deadlines,
 **GitHub:** brina-cloud
 
 ---
+<video src='https://somup.com/cOnYFNWaTD' controls> My demo video </video>
 
 ## Theme
 

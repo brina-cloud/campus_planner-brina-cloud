@@ -116,7 +116,7 @@ function updateProgress() {
             status.textContent = ' Over cap by ' + (weekTotal - config.cap) + ' min';
             status.style.color = '#e74c3c';
         } else if (weekTotal >= config.target) {
-            status.textContent = 'Goal met!';
+            status.textContent = '🎊Goal met!';
             status.style.color = '#27ae60';
         } else {
             status.textContent = (config.target - weekTotal) + ' min left to reach target';
