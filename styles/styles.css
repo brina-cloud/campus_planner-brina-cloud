@@ -1,8 +1,53 @@
+/* ===== REFERENCES SECTION ===== */
+.references-list {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    background: var(--peach-light);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border);
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.references-list li {
+    display: flex;
+    align-items: center;
+    gap: 1.1rem;
+    font-size: 1rem;
+    color: var(--brown-light);
+    padding: 0.7rem 1.2rem;
+    border-bottom: 1px solid var(--border);
+}
+.references-list li:last-child {
+    border-bottom: none;
+}
+.references-list kbd {
+    background: var(--cream-dark);
+    color: var(--brown);
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    padding: 0.18em 0.7em;
+    font-size: 0.98em;
+    font-family: 'Inter', 'Segoe UI', monospace;
+    box-shadow: 0 1px 2px rgba(92,51,16,0.07);
+    margin-right: 0.3em;
+    min-width: 2.2em;
+    text-align: center;
+    display: inline-block;
+}
+.references-list span {
+    color: var(--text-secondary);
+    font-size: 0.98em;
+}
 /* ===== CSS RESET & CUSTOM PROPERTIES ===== */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 :root {
-    /* Color palette from user's screenshot */
+   
     --cream: #FFFBF0;
     --peach: #FFCE99;
     --orange: #FF9F43;

@@ -113,13 +113,13 @@ function updateProgress() {
         bar.style.width = pct + '%';
 
         if (config.cap > 0 && weekTotal > config.cap) {
-            status.textContent = '⚠️ Over cap by ' + (weekTotal - config.cap) + ' min';
+            status.textContent = ' Over cap by ' + (weekTotal - config.cap) + ' min';
             status.style.color = '#e74c3c';
         } else if (weekTotal >= config.target) {
-            status.textContent = '🎉 Goal met!';
+            status.textContent = 'Goal met!';
             status.style.color = '#27ae60';
         } else {
-            status.textContent = '📊 ' + (config.target - weekTotal) + ' min left to reach target';
+            status.textContent = (config.target - weekTotal) + ' min left to reach target';
             status.style.color = '#5C3310';
         }
     } else {
@@ -130,29 +130,44 @@ function updateProgress() {
 }
 
 function drawChart() {
-    var days = [];
-    var now = new Date();
+    const chart = document.getElementById('trend-chart');
+    if (!chart) return;
 
-    for (var i = 6; i >= 0; i--) {
-        var d = new Date(now);
+    const days = [];
+    const now = new Date();
+    const taskCounts = tasks.reduce((acc, task) => {
+        if (task.created) {
+            const dateKey = task.created.split('T')[0];
+            acc[dateKey] = (acc[dateKey] || 0) + 1;
+        }
+        return acc;
+    }, {});
+
+    // 2. Build the last 7 days data
+    for (let i = 6; i >= 0; i--) {
+        const d = new Date(now);
         d.setDate(d.getDate() - i);
-        var key = d.toISOString().split('T')[0];
-        var label = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][d.getDay()];
-        var count = tasks.filter(function (t) { return t.created && t.created.startsWith(key); }).length;
-        days.push({ label: label, count: count });
+        const key = d.toISOString().split('T')[0];
+        const label = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][d.getDay()];
+        const count = taskCounts[key] || 0;
+        days.push({ label, count });
     }
 
-    var max = Math.max.apply(null, days.map(function (d) { return d.count; }).concat([1]));
-    var html = '';
-    days.forEach(function (d) {
-        var h = (d.count / max) * 100;
-        html += '<div class="chart-day">' +
-            '<span class="count">' + d.count + '</span>' +
-            '<div class="bar" style="height:' + Math.max(h, 4) + '%"></div>' +
-            '<span class="label">' + d.label + '</span>' +
-            '</div>';
-    });
-
-    var chart = document.getElementById('trend-chart');
-    if (chart) chart.innerHTML = html;
+    const max = Math.max(...days.map(d => d.count), 5); // Default min-height scale of 5
+    
+    // 3. Generate accessible HTML
+    chart.innerHTML = days.map(d => {
+        const heightPercent = (d.count / max) * 100;
+        
+        return `
+            <div class="chart-day" role="graphics-symbol" aria-label="${d.count} tasks on ${d.label}">
+                <span class="count" aria-hidden="true">${d.count}</span>
+                <div class="bar" 
+                     style="height: ${Math.max(heightPercent, 5)}%" 
+                     title="${d.count} tasks">
+                </div>
+                <span class="label" aria-hidden="true">${d.label}</span>
+            </div>
+        `;
+    }).join('');
 }

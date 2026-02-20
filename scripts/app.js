@@ -1,3 +1,5 @@
+
+
 var editing = null;
 
 // Form submit — add or edit a task
@@ -234,4 +236,30 @@ render();
 // Expose actions for inline handlers
 window.editTask = editTask;
 window.deleteTask = deleteTask;
-window.toggleTask = toggleTask;
+window.toggleTask = toggleTask;document.addEventListener('keydown', (e) => {
+    // Only trigger if Alt is held down
+    if (!e.altKey) return;
+
+    // Mapping keys to Section IDs
+    const shortcuts = {
+        '1': 'welcome-section',
+        '2': 'dashboard-section',
+        '3': 'add-new-section',
+        '4': 'search-section',
+        '5': 'settings-section',
+        '6': 'about-section',
+        's': 'settings-section' // Bonus for your Alt + S shortcut
+    };
+
+    const targetId = shortcuts[e.key.toLowerCase()];
+    
+    if (targetId) {
+        e.preventDefault(); // Prevent browser default (like Alt+S opening menus)
+        const targetElement = document.getElementById(targetId);
+        
+        if (targetElement) {
+            targetElement.scrollIntoView({ behavior: 'smooth' });
+            targetElement.focus(); // Requires tabindex="-1" on the section
+        }
+    }
+});
