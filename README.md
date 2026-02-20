@@ -9,7 +9,7 @@ A task management web app for students to organize assignments, track deadlines,
 live link :'https://brina-cloud.github.io/campus_planner-brina-cloud/'
 
 demo video: ### 🎥 Video Walkthrough
-[![Video Demo](https://img.shields.io/badge/Video-Watch%20Demo-blue?style=for-the-badge&logo=youtube)](https://somup.com/cOnYFNWaTD)
+'https://youtu.be/6EyhFOZvUUY'
 ---
 
 
